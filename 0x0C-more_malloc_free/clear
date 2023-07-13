@@ -1,0 +1,240 @@
+0x0C. C - More malloc, free
+README.md
+
+
+Project
+
+0x0C. C - More malloc, free
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+main.h
+
+
+#ifndef MAIN_H
+
+#define MAIN_H
+
+
+#include <stdio.h>
+
+#include <stdlib.h>
+
+#include <limits.h>
+
+
+int _putchar(char c);
+
+void *malloc_checked(unsigned int b);
+
+char *string_nconcat(char *s1, char *s2, unsigned int n);
+
+void *_calloc(unsigned int nmemb, unsigned int size);
+
+int *array_range(int min, int max);
+
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
+
+void errors(void);
+
+int _strlen(char *s);
+
+int is_digit(char *s);
+
+
+#endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+0-malloc_checked.c
+
+
+#include <stdlib.h>
+
+#include "main.h"
+
+
+/**
+
+ * *malloc_checked - allocates memory using malloc
+
+ * @b: number of bytes to allocate
+
+ *
+
+ * Return: a pointer to the allocated memory
+
+ */
+
+void *malloc_checked(unsigned int b)
+
+{
+
+        void *ptr;
+
+
+        ptr = malloc(b);
+
+
+        if (ptr == NULL)
+
+                exit(98);
+
+
+        return (ptr);
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1-string_nconcat.c
+
+
+#include <stdlib.h>
+
+#include "main.h"
+
+
+/**
+
+ * *string_nconcat - concatenates n bytes of a string to another string
+
+ * @s1: string to append to
+
+ * @s2: string to concatenate from
+
+ * @n: number of bytes from s2 to concatenate to s1
+
+ *
+
+ * Return: pointer to the resulting string
+
+ */
+
+char *string_nconcat(char *s1, char *s2, unsigned int n)
+
+{
+
+        char *s;
+
+        unsigned int i = 0, j = 0, len1 = 0, len2 = 0;
+
+
+        while (s1 && s1[len1])
+
+                len1++;
+
+        while (s2 && s2[len2])
+
+                len2++;
+
+
+        if (n < len2)
+
+                s = malloc(sizeof(char) * (len1 + n + 1));
+
+        else
+
+                s = malloc(sizeof(char) * (len1 + len2 + 1));
+
+
+        if (!s)
+
+                return (NULL);
+
+
+        while (i < len1)
+
+        {
+
+                s[i] = s1[i];
+
+                i++;
+
+        }
+
+
+        while (n < len2 && i < (len1 + n))
+
+                s[i++] = s2[j++];
+
+
+        while (n >= len2 && i < (len1 + len2))
+
+                s[i++] = s2[j++];
+
+
+        s[i] = 0;
+
+
+        return (s);
+
+}
