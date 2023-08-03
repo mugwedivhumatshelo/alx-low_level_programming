@@ -1,0 +1,1 @@
+This is my readme for 0x14-bit_manipulation which have the following files 1. 0-binary_to_uint.c 2. 1-print_binary.c 3. 2-get_bit.c 4. 3-set_bit.c 5. 4-clear_bit.c 6. 5-flip_bits.c and two advanced tasks.
